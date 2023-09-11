@@ -2,6 +2,8 @@ import { RectangleElement } from "../../entities/rectangle";
 import { Tool, ToolbarModel } from "../../widgets/toolbar";
 import { SceneModel } from "../../entities/scene";
 import { RectangleModel } from "../../entities/rectangle";
+import { SelectionModel } from "../../features/selection";
+import { SelectionElement } from "../../features/selection/lib/selection.element";
 
 declare global {
   type ImmutablePrimitive = undefined | null | boolean | string | number | Function;
@@ -30,12 +32,15 @@ declare global {
   }
 
   type SceneElement = RectangleElement;
+  type DrawableElement = RectangleElement | SelectionElement;
 
   type AppState = Immutable<{
     scene: {
       elements: SceneElement[];
-      selectedElements: SceneElement[];
-    }
+    },
+    selection: {
+      selectionElements: SelectionElement[];
+    },
     tool: {
       activeTool: Tool;
     }
@@ -45,5 +50,6 @@ declare global {
     ToolbarModel: typeof ToolbarModel,
     SceneModel: typeof SceneModel,
     RectangleModel: typeof RectangleModel,
+    SelectionModel: typeof SelectionModel,
   }
 }

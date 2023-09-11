@@ -1,11 +1,17 @@
 import { MouseEventHandler, useRef } from "react";
 import { EventBus, MouseDownEvent, MouseMoveEvent, MouseUpEvent } from "../../../shared";
 import { observer } from "mobx-react";
-import { useRenderElementsToScene } from "../lib";
+import { useRenderElements } from "../lib";
+import { SelectionElement } from "../../../features/selection/lib";
+import { SceneModel } from "../model";
 
-export const Scene = observer(() => {
+type Props = {
+  selectionElements: SelectionElement[];
+}
+
+export const Scene = observer(({ selectionElements }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  useRenderElementsToScene(canvasRef);
+  useRenderElements(canvasRef, [...SceneModel.elements, ...selectionElements]);
 
   const handleMouseDown: MouseEventHandler<HTMLCanvasElement> = (event) => {
     EventBus.fire(new MouseDownEvent({

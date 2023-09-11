@@ -1,8 +1,7 @@
 import { useEffect, MutableRefObject } from "react";
-import { SceneModel } from "../model";
 import { autorun } from "mobx";
 
-export const useRenderElementsToScene = (canvasRef: MutableRefObject<HTMLCanvasElement | null>) => {
+export const useRenderElements = (canvasRef: MutableRefObject<HTMLCanvasElement | null>, elements: DrawableElement[]) => {
   useEffect(() => {
     const off = autorun(() => {
       const canvas = canvasRef.current;
@@ -14,11 +13,11 @@ export const useRenderElementsToScene = (canvasRef: MutableRefObject<HTMLCanvasE
       if (!ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      SceneModel.elements.forEach(element => element.render(ctx))
+      elements.forEach(element => element.render(ctx))
     })
 
     return () => {
       off();
     }
-  }, [canvasRef]);
+  }, [canvasRef, elements]);
 }

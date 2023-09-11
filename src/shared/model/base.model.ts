@@ -11,7 +11,9 @@ export abstract class BaseModel {
     return {
       scene: {
         elements: toJS(BaseModel.models.SceneModel.elements),
-        selectedElements: toJS(BaseModel.models.SceneModel.selectedElements)
+      },
+      selection: {
+        selectionElements: toJS(BaseModel.models.SelectionModel.selectionElements)
       },
       tool: {
         activeTool: toJS(BaseModel.models.ToolbarModel.activeTool)

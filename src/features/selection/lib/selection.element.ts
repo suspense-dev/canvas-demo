@@ -1,17 +1,28 @@
-import { Drawable } from "roughjs/bin/core";
+import { BaseElement, BaseElementProps, getCoordsOfAlignedElement, StrokeSharpness } from "../../../shared";
 import { RoughGenerator } from "roughjs/bin/generator";
-import { DEFAULT_RECTANGLE_SIZE } from "./rectangle.constants";
-import { BaseElement, BaseElementProps, StrokeSharpness } from "../../../shared";
+import { Drawable } from "roughjs/bin/core";
+import { SELECTION_PADDING_BETWEEN_ELEMENT } from "./selection.constants";
 
 type Props = PartialBy<BaseElementProps, 'width' | 'height'>;
 
-export class RectangleElement extends BaseElement {
-  constructor(props: Props) {
+export class SelectionElement extends BaseElement {
+  targetElement: SceneElement;
+
+  constructor(targetElement: SceneElement, props: Props) {
     super({
       ...props,
-      width: DEFAULT_RECTANGLE_SIZE.width,
-      height: DEFAULT_RECTANGLE_SIZE.height,
+      width: targetElement.width + SELECTION_PADDING_BETWEEN_ELEMENT * 2,
+      height: targetElement.height + SELECTION_PADDING_BETWEEN_ELEMENT * 2,
+      styles: {
+        strokeColor: 'blue'
+      }
     });
+    this.targetElement = targetElement;
+
+    const { x, y } = getCoordsOfAlignedElement(this, targetElement);
+
+    this.x = x;
+    this.y = y;
   }
 
   getDrawableShape(generator: RoughGenerator): Drawable {

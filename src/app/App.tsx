@@ -1,6 +1,4 @@
 import React from 'react';
-import { Scene } from "../entities/scene";
-import { Toolbar } from "../widgets/toolbar";
 
 import './App.css';
 import '../entities/rectangle'; // to avoid tree shaking for the module
@@ -12,10 +10,7 @@ export const App = () => {
     <>
       <Handler/>
       <div className="App">
-        <RootPage>
-          <Scene/>
-          <Toolbar/>
-        </RootPage>
+        <RootPage/>
       </div>
     </>
   );

@@ -10,13 +10,11 @@ import {
 
 class _SceneModel extends BaseModel {
   elements: SceneElement[] = [];
-  selectedElements: SceneElement[] = [];
 
   constructor() {
     super('SceneModel');
     makeObservable(this, {
       elements: observable,
-      selectedElements: observable,
       addElement: action,
       replaceElement: action,
       removeElement: action,

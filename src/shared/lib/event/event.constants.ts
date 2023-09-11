@@ -13,3 +13,9 @@ export enum SceneEventName {
   RedrawElement = 'redraw-element',
   RemoveElement = 'remove-element'
 }
+
+export enum SelectionEventName {
+  SelectElement = 'select-element',
+  UnselectElement = 'unselect-element',
+  ClearSelections = 'clear-selections'
+}

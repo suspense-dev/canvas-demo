@@ -1,11 +1,13 @@
-import { ReactNode } from "react";
+import { observer } from "mobx-react";
+import { Scene } from "../../entities/scene";
+import { Toolbar } from "../../widgets/toolbar";
+import { SelectionModel } from "../../features/selection";
 
-type Props = {
-  children: ReactNode
-}
-
-export const RootPage = ({ children }: Props) => {
+export const RootPage = observer(() => {
   return (
-    <>{children}</>
+    <div>
+      <Scene selectionElements={SelectionModel.selectionElements}/>
+      <Toolbar/>
+    </div>
   )
-}
+})

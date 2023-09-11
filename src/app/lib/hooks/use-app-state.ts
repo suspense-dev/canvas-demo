@@ -1,12 +1,16 @@
 import { SceneModel } from "../../../entities/scene";
 import { ToolbarModel } from "../../../widgets/toolbar";
+import { toJS } from "mobx";
+import { SelectionModel } from "../../../features/selection";
 
 export const useAppState = (): AppState => ({
   scene: {
-    elements: [...SceneModel.elements],
-    selectedElements: [...SceneModel.selectedElements],
+    elements: toJS(SceneModel.elements),
+  },
+  selection: {
+    selectionElements: toJS(SelectionModel.selectionElements),
   },
   tool: {
-    activeTool: ToolbarModel.activeTool,
+    activeTool: toJS(ToolbarModel.activeTool),
   }
 })
