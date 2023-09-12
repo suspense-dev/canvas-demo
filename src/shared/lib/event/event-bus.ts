@@ -6,7 +6,11 @@ export class EventBus {
   static handlers: Record<string, Handler<BaseEvent>[]> = {};
 
   static fire<T extends BaseEvent>(event: T) {
-    EventBus.handlers[event.name].forEach(handler => handler(event));
+    const handlers = EventBus.handlers[event.name];
+
+    if (!handlers) return;
+
+    handlers.forEach(handler => handler(event));
   }
 
   static on<T extends BaseEvent>(eventName: T['name'], handler: Handler<T>): () => void {

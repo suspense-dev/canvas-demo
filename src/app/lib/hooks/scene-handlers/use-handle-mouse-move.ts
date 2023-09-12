@@ -1,9 +1,9 @@
 import { EventBus, MouseEventName, MouseMoveEvent } from "../../../../shared";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export const useHandleMouseMove = (state: AppState) => {
-  const handleMouseMove = (event: MouseMoveEvent) => {
-  }
+  const handleMouseMove = useCallback((event: MouseMoveEvent) => {
+  }, []);
 
   useEffect(() => {
     const off = EventBus.on(MouseEventName.MouseMove, handleMouseMove);

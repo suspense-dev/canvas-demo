@@ -4,6 +4,10 @@ export enum MouseEventName {
   MouseMove = 'mouse-move'
 }
 
+export enum KeyboardEventName {
+  KeyDown = 'key-down'
+}
+
 export enum CreateElementEventName {
   CreateElementRectangle = 'create-element-rectangle'
 }
